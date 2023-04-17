@@ -80,5 +80,5 @@ app.MapDelete("/todoitems/{id}", async (int Id, ToDoDbContext Db) =>
 
 app.MapMethods("/options-or-head", new[] { "OPTIONS", "HEAD" }, 
                           () => "This is an options or head request ");
-
+app.MapGet("/",()=>"auth server api is running");
 app.Run();
