@@ -48,7 +48,7 @@ function App() {
       </header>
       <section className="main" style={{ display: "block" }}>
         <ul className="todo-list">
-          {todos?.map((todo,index) => {
+        {todos && todos.map((todo,index) => {
             return (
               <li className={todo.isComplete ? "completed" : ""} key={index}>
                 <div className="view">
