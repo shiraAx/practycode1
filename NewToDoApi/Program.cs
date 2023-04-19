@@ -6,22 +6,22 @@ using NewToDoApi;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-// builder.Services.AddCors(options =>
-// {
-//     options.AddPolicy("OpenPolicy",
-//                           policy =>
-//                           {
-//                               policy.WithOrigins("http://localhost:3000")
-//                                                   .AllowAnyHeader()
-//                                                   .AllowAnyMethod();
-//                           });
-// });
-
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowOrigin",
-        builder => builder.WithOrigins("https://practycode1.onrender.com"));
+    options.AddPolicy("OpenPolicy",
+                          policy =>
+                          {
+                              policy.WithOrigins("http://localhost:3000")
+                                                  .AllowAnyHeader()
+                                                  .AllowAnyMethod();
+                          });
 });
+
+// builder.Services.AddCors(options =>
+// {
+//     options.AddPolicy("AllowOrigin",
+//         builder => builder.WithOrigins("https://practycode1.onrender.com"));
+// });
 
 builder.Services.AddSwaggerGen(c =>
 {
@@ -30,7 +30,7 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddDbContext<ToDoDbContext>();
 var app = builder.Build();
 
-app.UseCors("AllowOrigin");
+app.UseCors("OpenPolicy");
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
