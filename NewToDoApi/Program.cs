@@ -6,16 +6,23 @@ using NewToDoApi;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
+// builder.Services.AddCors(options =>
+// {
+//     options.AddPolicy("OpenPolicy",
+//                           policy =>
+//                           {
+//                               policy.WithOrigins("http://localhost:3000")
+//                                                   .AllowAnyHeader()
+//                                                   .AllowAnyMethod();
+//                           });
+// });
+
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("OpenPolicy",
-                          policy =>
-                          {
-                              policy.WithOrigins("http://localhost:3000")
-                                                  .AllowAnyHeader()
-                                                  .AllowAnyMethod();
-                          });
+    options.AddPolicy("AllowOrigin",
+        builder => builder.WithOrigins("https://practycode1.onrender.com"));
 });
+
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Todo API", Description = "Keep track of your tasks", Version = "v1" });
@@ -23,7 +30,7 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddDbContext<ToDoDbContext>();
 var app = builder.Build();
 
-app.UseCors("OpenPolicy");
+app.UseCors("AllowOrigin");
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
