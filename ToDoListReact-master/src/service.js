@@ -1,20 +1,19 @@
 import axios from "axios";
 
+// const apiClient=axios.defaults.baseURL = process.env.REACT_APP_API_URL;
+// console.log('process.env.API_URL', process.env.REACT_APP_API_URL)
 
-const apiClient=axios.defaults.baseURL = process.env.REACT_APP_API_URL;
-console.log('process.env.API_URL', process.env.REACT_APP_API_URL)
-
-// const apiClient = axios.create({
-//   // baseURL: "http://localhost:5228",
-// });
+const apiClient = axios.create({
+  // baseURL: "http://localhost:5228",
+});
 
 apiClient.interceptors.response.use(
-  response => response,
-  error => {
+  (response) => response,
+  (error) => {
     console.error(error);
     return Promise.reject(error);
   }
-)
+);
 
 export default {
   getTasks: async () => {
@@ -31,9 +30,10 @@ export default {
     return result.data;
   },
 
-  setCompleted: async (item,name, isComplete) => {
-    console.log("setCompleted",  isComplete );
-    const result = await apiClient.put(`/todoitems/${item}`, {item,
+  setCompleted: async (item, name, isComplete) => {
+    console.log("setCompleted", isComplete);
+    const result = await apiClient.put(`/todoitems/${item}`, {
+      item,
       name,
       isComplete,
     });
@@ -43,9 +43,7 @@ export default {
   deleteTask: async (taskId) => {
     console.log("deleteTask");
     console.log(taskId);
-    const result = await apiClient.delete(
-      `/todoitems/${taskId}`
-    );
+    const result = await apiClient.delete(`/todoitems/${taskId}`);
     return result.data;
   },
 };
