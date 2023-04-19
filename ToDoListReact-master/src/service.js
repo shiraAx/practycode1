@@ -4,7 +4,7 @@ import axios from "axios";
 // console.log('process.env.API_URL', process.env.REACT_APP_API_URL)
 
 const apiClient = axios.create({
-  baseURL: "https://lastnewtodoapi.onrender.com/swagger",
+  baseURL: "https://lastnewtodoapi.onrender.com",
 });
 
 apiClient.interceptors.response.use(
