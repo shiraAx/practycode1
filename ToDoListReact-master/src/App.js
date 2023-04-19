@@ -31,6 +31,8 @@ function App() {
     getTodos();
   }, []);
 
+  console.log("todos", todos);
+
   return (
     <section className="todoapp">
       <header className="header">
