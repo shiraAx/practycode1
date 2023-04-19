@@ -82,4 +82,11 @@ app.MapDelete("/todoitems/{id}", async (int Id, ToDoDbContext Db) =>
 app.MapMethods("/options-or-head", new[] { "OPTIONS", "HEAD" }, 
                           () => "This is an options or head request ");
 
+app.Use(async (context, next) =>
+{
+    Console.WriteLine($"Incoming request: {context.Request.Method} {context.Request.Path}");
+    await next.Invoke();
+});
+
+
 app.Run();
