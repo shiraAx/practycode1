@@ -52,6 +52,7 @@ app.MapPost("/todoitems", async (Item Dto, ToDoDbContext Db) =>
 app.MapPut("/todoitems/{id}", async (int Id, string name,bool IsComplete, ToDoDbContext Db) =>
 {
     var todo = await Db.Items.FindAsync(Id);
+     Console.WriteLine("IsComplete",IsComplete);
 
     if (todo is null) return Results.NotFound();
 
