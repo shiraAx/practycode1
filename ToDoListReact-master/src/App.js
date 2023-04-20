@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import service from "./service.js";
 
+const{REACT_APP_API_URL}=process.env
+
+
 function App() {
   const [newTodo, setNewTodo] = useState("");
   const [todos, setTodos] = useState([]);
