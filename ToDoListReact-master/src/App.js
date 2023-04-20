@@ -7,7 +7,7 @@ function App() {
 
   async function getTodos() {
     const todos = await service.getTasks();
-     console.log("ssss",todos)
+    console.log("ssss", todos);
     setTodos(todos);
   }
 
@@ -19,7 +19,7 @@ function App() {
   }
 
   async function updateCompleted(todo, isComplete) {
-    await service.setCompleted(todo.idItems,todo.name, isComplete);
+    await service.setCompleted(todo.idItems, todo.name, isComplete);
     await getTodos(); //refresh tasks list (in order to see the updated one)
   }
 
@@ -29,7 +29,11 @@ function App() {
   }
 
   useEffect(async () => {
-    const response = await fetch('https://lastnewtodoapi.onrender.com/items').then(res=>{console.log(res)});
+    const response = await fetch(
+      "https://lastnewtodoapi.onrender.com/items"
+    ).then((res) => {
+      console.log(res);
+    });
     const jsonData = await response.json();
     getTodos();
   }, []);
@@ -37,11 +41,9 @@ function App() {
   console.log("todos", todos);
 
   return (
-   
-
     <section className="todoapp">
       <header className="header">
-      { console.log("ssyyyyss",todos)}
+        {console.log("ssyyyyss", todos)}
         <h1>todos</h1>
         <form onSubmit={createTodo}>
           <input
@@ -54,25 +56,33 @@ function App() {
       </header>
       <section className="main" style={{ display: "block" }}>
         <ul className="todo-list">
-        {todos && todos.map((todo,index) => {
-            return (
-              <li className={todo.isComplete ? "completed" : ""} key={index}>
-                <div className="view">
-                  <input
-                    className="toggle"
-                    type="checkbox"
-                    defaultChecked={todo.isComplete}
-                    onChange={(e) => {updateCompleted(todo, e.target.checked);console.log("todo",todo.name);console.log(e.target.checked)}}
-                  />
-                  <label>{todo.name}</label>
-                  <button
-                    className="destroy"
-                    onClick={() => {deleteTodo(todo.idItems);console.log(todo.idItems)}}
-                  ></button>
-                </div>
-              </li>
-            );
-          })}
+          {todos &&
+            todos.map((todo, index) => {
+              return (
+                <li className={todo.isComplete ? "completed" : ""} key={index}>
+                  <div className="view">
+                    <input
+                      className="toggle"
+                      type="checkbox"
+                      defaultChecked={todo.isComplete}
+                      onChange={(e) => {
+                        updateCompleted(todo, e.target.checked);
+                        console.log("todo", todo.name);
+                        console.log(e.target.checked);
+                      }}
+                    />
+                    <label>{todo.name}</label>
+                    <button
+                      className="destroy"
+                      onClick={() => {
+                        deleteTodo(todo.idItems);
+                        console.log(todo.idItems);
+                      }}
+                    ></button>
+                  </div>
+                </li>
+              );
+            })}
         </ul>
       </section>
     </section>
