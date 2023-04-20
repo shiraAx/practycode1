@@ -1,17 +1,11 @@
-// import axios from "axios";
-
-
-// const apiClient = axios.create({
-//   // baseURL: "https://lastnewtodoapi.onrender.com",
-//   baseURL: process.env.REACT_APP_API_URL,
-// });
 import axios from "axios";
 
+const{REACT_APP_API_URL}=process.env
+
 const apiClient = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+   baseURL: `https://${REACT_APP_API_URL}`,
+  // baseURL: process.env.REACT_APP_API_URL,
 });
-
-
 
 apiClient.interceptors.response.use(
   (response) => response,
