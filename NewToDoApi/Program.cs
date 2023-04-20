@@ -107,7 +107,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("OpenPolicy",
                       policy =>
                       {
-                          policy.WithOrigins("https://practycode1.onrender.com")
+                          policy.WithOrigins("http://localhost:3000/")
                                 .AllowAnyHeader()
                                 .AllowAnyMethod()
                                 .AllowCredentials(); // Added AllowCredentials

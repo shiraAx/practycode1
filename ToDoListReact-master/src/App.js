@@ -29,8 +29,8 @@ function App() {
   }
 
   useEffect(async () => {
-    // const response = await fetch('https://lastnewtodoapi.onrender.com/items').then(res=>{console.log(res)});
-    // const jsonData = await response.json();
+    const response = await fetch('https://lastnewtodoapi.onrender.com/items').then(res=>{console.log(res)});
+    const jsonData = await response.json();
     getTodos();
   }, []);
 
