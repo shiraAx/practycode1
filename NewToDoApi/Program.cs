@@ -107,7 +107,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("OpenPolicy",
                       policy =>
                       {
-                          policy.WithOrigins()
+                          policy.WithOrigins("https://practycode1.onrender.com")
                                 .AllowAnyHeader()
                                 .AllowAnyMethod()
                                 .AllowCredentials(); // Added AllowCredentials
