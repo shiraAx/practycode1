@@ -7,7 +7,7 @@ function App() {
 
   async function getTodos() {
     const todos = await service.getTasks();
-    await console.log("ssss",todos.json)
+     console.log("ssss",todos)
     setTodos(todos);
   }
 
@@ -28,15 +28,20 @@ function App() {
     await getTodos(); //refresh tasks list
   }
 
-  useEffect(() => {
+  useEffect(async () => {
+    // const response = await fetch('https://lastnewtodoapi.onrender.com/items').then(res=>{console.log(res)});
+    // const jsonData = await response.json();
     getTodos();
   }, []);
 
   console.log("todos", todos);
 
   return (
+   
+
     <section className="todoapp">
       <header className="header">
+      { console.log("ssyyyyss",todos)}
         <h1>todos</h1>
         <form onSubmit={createTodo}>
           <input
