@@ -5,7 +5,7 @@ import axios from "axios";
 
 const apiClient = axios.create({
   // baseURL: "https://lastnewtodoapi.onrender.com",
-  baseURL:process.env.REACT_APP_API_URL
+  baseURL: process.env.REACT_APP_API_URL,
 });
 
 apiClient.interceptors.response.use(
@@ -18,9 +18,9 @@ apiClient.interceptors.response.use(
 
 export default {
   getTasks: async () => {
-    console.log(baseURL)
+    console.log(baseURL);
     const result = await apiClient.get(`/items`);
-     console.log("result",result)
+    console.log("result", result);
 
     return result.data;
   },
